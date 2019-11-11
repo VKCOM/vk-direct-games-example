@@ -1,0 +1,16 @@
+html
+    head
+        meta(charset = 'utf-8')
+        meta(name='viewport', content="initial-scale=1.0, width=device-width, user-scalable=no")
+        title VK Connect test Direct Games
+    body(class="body")
+        header(class="header")
+            h1(class="header__title") VK Connect test Direct Games
+        div(class="content")
+            div(class="search-widget")
+                input(class="search-widget__control"
+                    name="search-query"
+                    placeholder="Введите название метода" onchange='vkDirectGameApp.filterMethods(this)'
+                )
+            div(id="methods-list")
+        div(class="notify-block hide")

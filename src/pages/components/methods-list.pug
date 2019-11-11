@@ -1,0 +1,30 @@
+if methods && methods.length > 0
+    each method in methods
+        div(class="method-item")
+            h4(class="method-item__header" onclick='vkDirectGameApp.toggleMoreInfoMethod("' + method.name + '", this)') #{method.name}
+                span(class="icon-toggle") +
+            div(class="method-item__more hide")
+                p(class="method-item__description") #{method.description}
+                from(class=method.name + "-request-edit")
+                    if method.params
+                        fieldset(class="fieldset")
+                            legend  Парамеры запроса
+                            each param in method.params
+                                div(class="form-input")
+                                    label(class="form-input__label")
+                                        b(class="form-input__label--boldText") #{param.name}
+                                        span  - #{param.title}:
+                                    input(class="control-text--input control-text" type="text" name=param.name value=param.default)
+                                    if param.required
+                                        small(class="helper") Обязательный
+                    div(class="form-input request-params")
+                        label(class="form-input__label") Запрос
+                        div(class="textarea-input")
+                            textarea(class="request-params-area control-text control-text--textarea")
+                    div(class="result-block")
+                        label(class="form-input__label") Ответ
+                        div(class="textarea-input")
+                            textarea(class="result-content-area control-text control-text--textarea")
+                    button(class="button" onclick='vkDirectGameApp.send("' + method.name + '")') Отправить
+else
+    div(class="no-found") Ничего не найдено

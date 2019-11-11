@@ -1,0 +1,216 @@
+.body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Segoe WP, Helvetica Neue, Lucida Grande, Verdana, Tahoma, Arial, sans-serif !important;
+  background: rgb(255, 255, 255);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.no-found {
+  margin: 11px auto;
+  text-align: center;
+  font-size: 17px;
+  color: rgb(93, 93, 93);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  height: 45px;
+  width: 100%;
+  background: rgb(81, 129, 184);
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  line-height: 40px;
+}
+
+.header__title {
+  font-size: 17px;
+  margin: 3px;
+}
+
+.search-widget {
+  margin: 55px 10px 10px;
+}
+
+.search-widget__control {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 0 1px 1px rgb(236, 236, 236);
+  -webkit-box-shadow: 0 1px 1px rgb(236, 236, 236);
+  -moz-box-shadow: 0 1px 1px rgb(236, 236, 236);
+  border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+}
+
+.search-widget__control:active, .search-widget__control:focus {
+  outline: none;
+  border: 1px solid rgb(81, 129, 184);
+}
+
+.content {
+  margin: 40px 10px 0;
+}
+
+.method-item {
+  margin: 10px;
+  background-color: rgb(251, 251, 251);
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 0 1px 1px rgb(236, 236, 236);
+  -webkit-box-shadow: 0 1px 1px rgb(236, 236, 236);
+  -moz-box-shadow: 0 1px 1px rgb(236, 236, 236);
+  border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+}
+
+.method-item__header {
+  margin: 0;
+  padding: 10px 10px;
+  cursor: pointer;
+  color: rgb(93, 93, 93);
+}
+
+.method-item__description {
+  margin: 0;
+}
+
+.method-item__more {
+  margin: 10px;
+}
+
+.request-params {
+  margin: 10px 0;
+}
+
+.control-text {
+  display: block;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 20px;
+  color: rgb(85, 85, 85);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(192, 190, 208);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  border-radius: 7px 7px 7px 7px;
+  -moz-box-shadow: 0 1px 1px rgb(236, 236, 236);
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+}
+
+.control-text--textarea {
+  margin: 0;
+  height: 100px;
+  width: 100%;
+  font-size: 13px;
+  resize: none;
+}
+
+.control-text--input {
+  height: 30px;
+  font-size: 12px;
+}
+
+.control-text:active,
+.control-text:focus {
+  border: 1px solid rgb(81, 129, 184);
+  outline: none;
+}
+
+.notify-block {
+  padding: 10px;
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  background: rgb(81, 129, 184);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+}
+
+.icon-toggle {
+  float: right;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.form-input__label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.helper {
+  margin-top: 6px;
+  padding: 0 1px;
+  font-size: 11px;
+  line-height: 15px;
+  color: rgb(153, 153, 153);
+}
+
+.button {
+  display: inline-block;
+  margin: 15px 0 5px;
+  padding: 6px 12px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 15px;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: rgb(75, 179, 75);
+  color: rgb(255, 255, 255);
+}
+
+.button:active,
+.button:focus {
+  border: 1px solid rgb(13, 115, 0);
+  outline: none;
+}
+
+.form-input {
+  margin-top: 15px;
+}
+
+.fieldset {
+  margin-top: 10px;
+}
+
+.control-text--successResponse {
+  border: 1px solid rgb(119, 232, 104);
+}
+
+.control-text--errorResponse {
+  border: 1px solid rgb(232, 104, 104);
+}
+
+.form-input__label--boldText {
+  color: rgb(93, 93, 93);
+}
