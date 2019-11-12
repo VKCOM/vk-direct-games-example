@@ -1,53 +1,36 @@
 [
   {
-    "name": "VKWebAppGetEmail",
-    "description": "Позволяет получить адрес электронной почты пользователя. После вызова отображает экран с запросом прав на доступ к e-mail."
-  },
-  {
-    "name": "VKWebAppGetUserInfo",
-    "description": "Получить информацию о пользователе."
-  },
-  {
-    "name": "VKWebAppGetPhoneNumber",
-    "description": "Позволяет получить номер телефона текущего пользователя. Официальное приложение отображает экран с запросом разрешения пользователя на передачу его номера телефона в приложение."
+    "name": "VKWebAppShowOrderBox",
+    "description": "Вызов бокса покупки игрового предмета.",
+    "params": [
+      {
+        "name": "type",
+        "title": "Тип покупки. Доступно votes и item, но на данный момент поддерживается только item",
+        "required": true,
+        "default": "item"
+      },
+      {
+        "name": "item",
+        "title": "Идентификатор продукта, обязателен при указании типа item",
+        "required": true,
+        "default": "item1"
+      }
+    ]
   },
   {
     "name": "VKWebAppShowInviteBox",
     "description": "Позволяет пригласить друзей в игру."
   },
   {
-    "name": "VKWebAppGetClientVersion",
-    "description": "Запрос версии клиента."
-  },
-  {
-    "name": "VKWebAppGameInstalled",
-    "description": "Позволяет проверить, что игра установлена.",
+    "name": "VKWebAppShowLeaderBoardBox",
+    "description": "Вызов игрового либерборда, в котором показывается место пользователя среди друзей.",
     "params": [
       {
-        "name": "app_id",
-        "title": "ID приложения",
-        "default": 7170524,
-        "type": "number",
-        "required": true
-      }
-    ]
-  },
-  {
-    "name": "VKWebAppGetAuthToken",
-    "description": "Позволяет запросить права доступа у пользователя и получить ключ для работы с API. При этом для идентификации пользователя в сервисе токен запрашивать не нужно.",
-    "params": [
-      {
-        "name": "app_id",
-        "title": "ID приложения",
+        "name": "user_result",
+        "title": "Текущий уровень или очки пользователя",
         "required": true,
         "type": "number",
-        "default": 7170524
-      },
-      {
-        "name": "scope",
-        "title": "Список прав доступа",
-        "required": true,
-        "default": "friends,status"
+        "default": 1
       }
     ]
   },
@@ -57,7 +40,7 @@
     "params": [
       {
         "name": "uid",
-        "title": "ID пользователя",
+        "title": "ID пользователя (пользователь должен быть в друзьях у текущего игрока)",
         "required": true,
         "type": "number",
         "default": 0
@@ -74,31 +57,6 @@
         "required": true,
         "type": "number",
         "default": 123
-      }
-    ]
-  },
-  {
-    "name": "VKWebAppShowLeaderBoardBox",
-    "description": "Вызов игрового либерборда, в котором показывается место пользователя среди друзей.",
-    "params": [
-      {
-        "name": "user_result",
-        "title": "Текущий уровень или очки пользователя",
-        "required": true,
-        "type": "number",
-        "default": 1
-      }
-    ]
-  },
-  {
-    "name": "VKWebAppShare",
-    "description": "Позволяет поделиться ссылкой. Ссылка для расшаривания (по умолчанию — текущая ссылка в виде https://vk.com/app123#hash).",
-    "params": [
-      {
-        "name": "link",
-        "title": "Ссылка для расшаривания",
-        "required": true,
-        "default": "https://vk.com/app123#hash"
       }
     ]
   },
@@ -142,14 +100,19 @@
     ]
   },
   {
-    "name": "VKWebAppSetLocation",
-    "description": "Позволяет установить новое значение хэша (хэш — строка после https://vk.com/app23456#, используется для навигации внутри приложения).",
+    "name": "VKWebAppAddToFavorites",
+    "description": "Запрос на добавление приложения в избранное."
+  },
+  {
+    "name": "VKWebAppJoinGroup",
+    "description": "Позволяет пользователю вступить в сообщество.",
     "params": [
       {
-        "name": "location",
-        "title": "Ссылка для расшаривания",
+        "name": "group_id",
+        "title": "ID сообщества",
         "required": true,
-        "default": "page"
+        "type": "number",
+        "default": 78616012
       }
     ]
   },
@@ -161,7 +124,7 @@
         "name": "group_id",
         "title": "ID сообщества",
         "type": "number",
-        "default": 0,
+        "default": 78616012,
         "required": true
       },
       {
@@ -171,74 +134,29 @@
     ]
   },
   {
-    "name": "VKWebAppJoinGroup",
-    "description": "Позволяет пользователю вступить в сообщество.",
-    "params": [
-      {
-        "name": "group_id",
-        "title": "ID сообщества",
-        "required": true,
-        "type": "number",
-        "default": 1
-      }
-    ]
+    "name": "VKWebAppGetUserInfo",
+    "description": "Получить информацию о пользователе."
   },
   {
-    "name": "VKWebAppShowOrderBox",
-    "description": "Вызов бокса покупки игрового предмета.",
-    "params": [
-      {
-        "name": "type",
-        "title": "Тип покупки. Доступно votes и item, но на данный момент поддерживается только item",
-        "required": true,
-        "default": "item"
-      },
-      {
-        "name": "item",
-        "title": "Идентификатор продукта, обязателен при указании типа item",
-        "required": true,
-        "default": "item1"
-      }
-    ]
+    "name": "VKWebAppGetClientVersion",
+    "description": "Запрос версии клиента."
   },
   {
-    "name": "VKWebAppGetCommunityToken",
-    "description": "Получение токена сообщества в VK Mini App. Событие, аналогичное VKWebAppGetCommunityAuthToken. Требуется для синхронизации синтаксиса запроса и ответов на разных платформах.",
+    "name": "VKWebAppGetAuthToken",
+    "description": "Позволяет запросить права доступа у пользователя и получить ключ для работы с API. При этом для идентификации пользователя в сервисе токен запрашивать не нужно.",
     "params": [
       {
         "name": "app_id",
         "title": "ID приложения",
-        "default": 7170524,
+        "required": true,
         "type": "number",
-        "required": true
-      },
-      {
-        "name": "group_id",
-        "title": "ID группы",
-        "default": 0,
-        "type": "number",
-        "required": true
+        "default": 7170524
       },
       {
         "name": "scope",
         "title": "Список прав доступа",
-        "default": "messages",
-        "required": true
-      }
-    ]
-  },
-  {
-    "name": "VKWebAppAddToFavorites",
-    "description": "Запрос на добавление приложения в избранное."
-  },
-  {
-    "name": "VKWebAppCopyText",
-    "description": "Копирование текста в буфер обмена.",
-    "params": [
-      {
-        "name": "text",
-        "title": "Строка, которую необходимо поместить в буфер обмена",
-        "default": "Строка, которую необходимо поместить в буфер обмена"
+        "required": true,
+        "default": "friends,status"
       }
     ]
   },
@@ -259,9 +177,46 @@
       },
       {
         "name": "params",
-        "title": "параметры метода API",
+        "title": "параметры метода API (параметр `access_token` никому передавать нельзя)",
         "type": "json",
         "default": "{\"user_ids\": \"1\", \"v\":\"5.101\", \"access_token\":\"your_token\"}"
+      }
+    ]
+  },
+  {
+    "name": "VKWebAppSetLocation",
+    "description": "Позволяет установить новое значение хэша (хэш — строка после https://vk.com/app23456#, используется для навигации внутри приложения).",
+    "params": [
+      {
+        "name": "location",
+        "title": "Ссылка для расшаривания",
+        "required": true,
+        "default": "page"
+      }
+    ]
+  },
+  {
+    "name": "VKWebAppShare",
+    "description": "Позволяет поделиться ссылкой. Ссылка для расшаривания (по умолчанию — текущая ссылка в виде https://vk.com/app123#hash).",
+    "params": [
+      {
+        "name": "link",
+        "title": "Ссылка для расшаривания",
+        "required": true,
+        "default": "https://vk.com/app123#hash"
+      }
+    ]
+  },
+  {
+    "name": "VKWebAppGameInstalled",
+    "description": "Позволяет проверить, что игра установлена.",
+    "params": [
+      {
+        "name": "app_id",
+        "title": "ID приложения",
+        "default": 7170524,
+        "type": "number",
+        "required": true
       }
     ]
   },
@@ -272,7 +227,7 @@
       {
         "name": "group_id",
         "title": "ID сообщества",
-        "default": 0,
+        "default": 78616012,
         "type": "number",
         "required": true
       },
@@ -283,34 +238,5 @@
         "default": "{\"foo\": \"bar\"}"
       }
     ]
-  },
-  {
-    "name": "VKWebAppFlashSetLevel",
-    "description": "Запрос установку уровня яркости фонарика.",
-    "params": [
-      {
-        "name": "level",
-        "title": "Уровень яркости. От 0 до 1",
-        "default": 1,
-        "type": "number",
-        "required": true
-      }
-    ]
-  },
-  {
-    "name": "VKWebAppFlashGetInfo",
-    "description": "Запрос на получение информации о фонарике."
-  },
-  {
-    "name": "VKWebAppGetFriends",
-    "description": "Выбор друзей пользователя."
-  },
-  {
-    "name": "VKWebAppOpenContacts",
-    "description": "Выбор контакта на телефоне."
-  },
-  {
-    "name": "VKWebAppOpenQR",
-    "description": "Открытие QR ридера."
   }
 ]

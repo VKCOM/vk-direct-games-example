@@ -1,8 +1,12 @@
 if methods && methods.length > 0
     each method in methods
         div(class="method-item")
-            h4(class="method-item__header" onclick='vkDirectGameApp.toggleMoreInfoMethod("' + method.name + '", this)') #{method.name}
-                span(class="icon-toggle") +
+            if method.is_supported
+                h4(class="method-item__header" onclick='vkDirectGameApp.toggleMoreInfoMethod("' + method.name + '", this)') #{method.name}
+                    span(class="icon-toggle") +
+            else
+                h4(class="method-item__header") #{method.name}
+                    span(class="method-item__info") Только IOS/Android
             div(class="method-item__more hide")
                 p(class="method-item__description") #{method.description}
                 from(class=method.name + "-request-edit")

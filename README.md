@@ -1,6 +1,6 @@
 # VK Connect test Direct Games
 
-Приложение доступно по ссылке https://m.vk.com/app7170524. Поддерживается на платформах: Mobile, Android, IOS. 
+Приложение доступно по ссылке https://m.vk.com/app7170524. Поддерживается на платформах: Mobile, Android, IOS. Подробную информацию о том, что нужно сделать для запуска игры на платформе Direct Games читайте в документации https://vk.com/dev/games_vk_connect. 
 
 ### Структура проекта:
 
@@ -11,6 +11,7 @@
 - src/notify.js - модуль для показа всплывающих нотификаций.
 - src/getHelperForMethod.js - модуль, который создает объект methodRequestHelper для конкретного метода vk-connect.
 - src/renderMethods.js - модуль, который отвечает за вывод списка методов vk-connect на экран.
+- src/UrlParser.js - модуль, который может доставать значения GET-параметров из адресной строки
 
 ### Как работает:
  
