@@ -1,7 +1,7 @@
 # VK Connect test Direct Games
 
 Приложение доступно по ссылке https://m.vk.com/app7170524. Поддерживается на платформах: m.vk.com, Android, iOS. 
-Гайд по быйстрой интеграции https://vk.com/dev/games_vk_connect. 
+Гайд по быстрой интеграции https://vk.com/dev/games_vk_connect. 
 
 ### Структура проекта:
 
