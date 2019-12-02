@@ -57,7 +57,7 @@ class MethodRequestHelper {
   _showResponse(className, data) {
     this.resultArea.classList.add(className);
     setTimeout(() => this.resultArea.classList.remove(className), 3000);
-    this.resultArea.innerHTML = JSON.stringify(data);
+    this.resultArea.value = JSON.stringify(data);
   }
 
   fetchParams() {
