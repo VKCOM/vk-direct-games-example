@@ -15,7 +15,7 @@ class MethodRequestHelper {
     });
 
     if (!this.formMethod) {
-      throw new Error('Форма для отправки запоса не найдена');
+      throw new Error('Форма для отправки запроса не найдена');
     }
 
     this.resultArea = this.formMethod.querySelector('.result-content-area');
