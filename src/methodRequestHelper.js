@@ -15,7 +15,7 @@ class MethodRequestHelper {
     });
 
     if (!this.formMethod) {
-      throw new Error('Форма для отправки запоса не найдена');
+      throw new Error('Форма для отправки запроса не найдена');
     }
 
     this.resultArea = this.formMethod.querySelector('.result-content-area');
@@ -40,6 +40,10 @@ class MethodRequestHelper {
 
     if (currentParam.type === 'number') {
       return parseFloat(value);
+    }
+
+    if (currentParam.type === 'boolean') {
+      return !!+value;
     }
 
     if (currentParam.type === 'json') {

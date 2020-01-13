@@ -18,6 +18,46 @@
     ]
   },
   {
+    "name": "VKWebAppShowStoryBox",
+    "description": "Открытие редактора историй.",
+    "params": [
+      {
+        "name": "background_type",
+        "title": "Тип истории. Возможные значения: image, video, none (для случая передачи стикера непосредственно на камеру)",
+        "required": true,
+        "default": "image"
+      },
+      {
+        "name": "url",
+        "title": "Ссылка на изображение или видео (передача должна переходить по прямой ссылке на mp4)",
+        "default": "https://sun9-65.userapi.com/c850136/v850136098/1b77eb/0YK6suXkY24.jpg"
+      },
+      {
+        "name": "blob",
+        "title": "Base64 строка с BLOB-ом (поддерживается только для image).",
+        "default": ""
+      },
+      {
+        "name": "locked",
+        "title": "Можно ли перемещать фотографию. (Возможные значения: 0 или 1)",
+        "type" : "boolean",
+        "default": ""
+      },
+      {
+        "name": "stickers",
+        "type": "json",
+        "title" : "Массив объектов, описывающих стикеры на полотне",
+        "default": "[{\"sticker_type\":\"renderable\",\"sticker\":{ \"content_type\":\"image\", \"url\": \"https://vk.com/sticker/1-126-256\"}}]"
+      },
+      {
+        "name": "attachment",
+        "type": "json",
+        "title": "Описание объекта аттача к истории",
+        "default": "{\"text\":\"go_to\", \"type\":\"url\",\"url\":\"https://m.vk.com/app7170524\"}"
+      }
+    ]
+  },
+  {
     "name": "VKWebAppShowInviteBox",
     "description": "Позволяет пригласить друзей в игру."
   },
