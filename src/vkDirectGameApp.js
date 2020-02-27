@@ -2,13 +2,13 @@ import methods from './methods';
 import notify from './notify';
 import renderMethods from './renderMethods';
 import getHelperForMethod from './getHelperForMethod';
-import connect from '@vkontakte/vk-connect';
+import bridge from '@vkontakte/vk-bridge';
 
 class vkDirectGameApp {
-  //Выводим список доступных методов на экран и запускаем vk-connect
+  //Выводим список доступных методов на экран и запускаем vk-bridge
   init() {
     renderMethods(methods);
-    connect.send('VKWebAppInit', {});
+    bridge.send('VKWebAppInit', {});
   }
 
   toggleMoreInfoMethod(methodName, el) {
@@ -36,14 +36,14 @@ class vkDirectGameApp {
   }
 
   send(methodName) {
-    if (!connect.supports(methodName)) {
+    if (!bridge.supports(methodName)) {
       notify('Метод не поддерживается');
       return;
     }
 
     const helper = getHelperForMethod(methodName);
     helper.showRequest();
-    connect.sendPromise(methodName, helper.fetchParams()).then(
+    bridge.sendPromise(methodName, helper.fetchParams()).then(
       data => helper.showSuccessResponse(data)
     ).catch(
       error => helper.showErrorResponse(error)

@@ -1,7 +1,7 @@
 import templateMethodsList from './pages/components/methods-list.pug';
 import UrlParser from "./UrlParser";
 import methods from "./methods";
-import connect from "@vkontakte/vk-connect";
+import bridge from '@vkontakte/vk-bridge';
 
 function tryAddAccessToken(methodConfig) {
   if (methodConfig.name === 'VKWebAppCallAPIMethod') {
@@ -18,7 +18,7 @@ function tryAddAccessToken(methodConfig) {
 
 const renderMethods = (methodsList) => {
   methods.forEach((item) => {
-    item.is_supported = connect.supports(item.name);
+    item.is_supported = bridge.supports(item.name);
     tryAddAccessToken(item);
   });
 
