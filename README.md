@@ -5,22 +5,22 @@
 
 ### Структура проекта:
 
-- src/methods.json - конфиг всех доступных методов VK Connect и список поддерживаемых параметров по каждому из них.
-- src/vkDirectGameApp.js - модуль для выбора метода и отправки запроса через VK Connect.
+- src/methods.json - конфиг всех доступных методов VK Bridge и список поддерживаемых параметров по каждому из них.
+- src/vkDirectGameApp.js - модуль для выбора метода и отправки запроса через VK Bridge.
 - src/methodRequestHelper.js - модуль для редактирования параметров запроса.
 - src/notify.js - модуль для показа всплывающих нотификаций.
-- src/getHelperForMethod.js - модуль для создания methodRequestHelper для методов VK Connect.
-- src/renderMethods.js - модуль для отображения списка методов VK Connect.
+- src/getHelperForMethod.js - модуль для создания methodRequestHelper для методов VK Bridge.
+- src/renderMethods.js - модуль для отображения списка методов VK Bridge.
 - src/UrlParser.js - достает GET-параметры из адресной строки
 
 ### Как работает:
  
-Запрос к VK Connect отправляется в методе **vkDirectGameApp.send**. 
-- Проверяем доступность метода на текущей платформе с помощью **connect.supports(methodName)**
+Запрос к VK Bridge отправляется в методе **vkDirectGameApp.send**. 
+- Проверяем доступность метода на текущей платформе с помощью **bridge.supports(methodName)**
 - Создаем **methodRequestHelper** для метода.
 - **methodRequestHelper** находит метод в конфиге **methods.json**
 - Достаем параметры из формы  с помощью **methodRequestHelper.fetchParams**, приводим их к нужному типу (**methodRequestHelper.castValue**), собираем json-объект. 
-- Отправляем запрос через (**connect.sendPromise**).
+- Отправляем запрос через (**bridge.sendPromise**).
 - Выводим ответ методом **methodRequestHelper.showRequest**
 
 
