@@ -278,5 +278,17 @@
         "default": "{\"foo\": \"bar\"}"
       }
     ]
+  },
+  {
+    "name": "VKWebAppShowNativeAds",
+    "description": "Показывает рекламу пользователю.",
+    "params": [
+      {
+        "name": "ad_format",
+        "title": "Формат рекламы, возможные значения preloader, reward, interstitial",
+        "default": "preloader",
+        "required": true
+      }
+    ]
   }
 ]
