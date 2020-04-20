@@ -290,5 +290,10 @@
         "required": true
       }
     ]
+  },
+  {
+    "name": "VKWebAppAddToHomeScreen",
+    "description": "Добавление мини-приложения на главный экран устройства.",
+    "params": []
   }
 ]
