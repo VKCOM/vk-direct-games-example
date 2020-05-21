@@ -7,8 +7,22 @@ import bridge from '@vkontakte/vk-bridge';
 class vkDirectGameApp {
   //Выводим список доступных методов на экран и запускаем vk-bridge
   init() {
+    this.renderHashInfo();
     renderMethods(methods);
     bridge.send('VKWebAppInit', {});
+  }
+
+  renderHashInfo() {
+    const hash = location.hash;
+    const hashInfoWrap = document.querySelector('.hash-banner');
+    const hashInfoEl = hashInfoWrap.querySelector('.banner__description');
+
+    if (!hash || !hash.length) {
+      return;
+    }
+
+    hashInfoWrap.classList.remove('hide');
+    hashInfoEl.innerHTML = hash.substr(1);
   }
 
   toggleMoreInfoMethod(methodName, el) {
