@@ -3,12 +3,29 @@ import notify from './notify';
 import renderMethods from './renderMethods';
 import getHelperForMethod from './getHelperForMethod';
 import bridge from '@vkontakte/vk-bridge';
+import UrlParser from "./UrlParser";
 
 class vkDirectGameApp {
   //Выводим список доступных методов на экран и запускаем vk-bridge
   init() {
+    this.renderHashInfo();
     renderMethods(methods);
     bridge.send('VKWebAppInit', {});
+  }
+
+  renderHashInfo() {
+    const parser = new UrlParser();
+    parser.parseUri();
+    const hash = parser.getParam('hash');
+    const hashInfoWrap = document.querySelector('.hash-banner');
+    const hashInfoEl = hashInfoWrap.querySelector('.banner__description');
+
+    if (!hash || !hash.length) {
+      return;
+    }
+
+    hashInfoWrap.classList.remove('hide');
+    hashInfoEl.innerHTML = hash;
   }
 
   toggleMoreInfoMethod(methodName, el) {
