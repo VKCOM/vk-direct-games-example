@@ -18,6 +18,30 @@
     ]
   },
   {
+    "name": "VkWebAppShowSubscriptionBox",
+    "description": "Вызов диалога работы с подпиской",
+    "params": [
+      {
+        "name": "action",
+        "title": "Действие (crate/cancel/resume)",
+        "default": "create",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "item",
+        "title": "Товар подписки",
+        "type": "string",
+        "default": "item1"
+      },
+      {
+        "name": "subscription_id",
+        "title": "Id существующей подписки для действий cancel/resume",
+        "type": "number"
+      }
+    ]
+  },
+  {
     "name": "VKWebAppShowStoryBox",
     "description": "Открытие редактора историй.",
     "params": [
@@ -40,13 +64,13 @@
       {
         "name": "locked",
         "title": "Можно ли перемещать фотографию. (Возможные значения: 0 или 1)",
-        "type" : "boolean",
+        "type": "boolean",
         "default": ""
       },
       {
         "name": "stickers",
         "type": "json",
-        "title" : "Массив объектов, описывающих стикеры на полотне",
+        "title": "Массив объектов, описывающих стикеры на полотне",
         "default": "[{\"sticker_type\":\"renderable\",\"sticker\":{ \"content_type\":\"image\", \"url\": \"https://vk.com/sticker/1-126-256\"}}]"
       },
       {
@@ -246,6 +270,11 @@
         "default": "https://vk.com/app123#hash"
       }
     ]
+  },
+  {
+    "name": "VkWebAppShowInstallPushBox",
+    "description": "Отправляет пуш-запрос установки игры на мобмльное устройство",
+    "params": []
   },
   {
     "name": "VKWebAppGameInstalled",
