@@ -274,3 +274,8 @@
   font-size: 19px;
   color: #fff;
 }
+
+.method-list--web {
+  max-height: 930px;
+  overflow-y: auto;
+}

@@ -16,13 +16,18 @@ function tryAddAccessToken(methodConfig) {
   }
 }
 
-const renderMethods = (methodsList) => {
+const renderMethods = (methodsList, modifier = '') => {
   methods.forEach((item) => {
     item.is_supported = bridge.supports(item.name);
     tryAddAccessToken(item);
   });
 
-  document.querySelector('#methods-list').innerHTML = templateMethodsList({"methods": methodsList});
+  const methodListEl = document.querySelector('#methods-list');
+  if (modifier) {
+    methodListEl.classList.add(`method-list--${modifier}`);
+  }
+
+  methodListEl.innerHTML = templateMethodsList({"methods": methodsList});
 };
 
 export default renderMethods
