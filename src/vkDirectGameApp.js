@@ -6,17 +6,22 @@ import bridge from '@vkontakte/vk-bridge';
 import UrlParser from "./UrlParser";
 
 class vkDirectGameApp {
+  constructor() {
+    this.urlParser = null;
+  }
+
   //Выводим список доступных методов на экран и запускаем vk-bridge
   init() {
+    this.urlParser = new UrlParser();
+    this.urlParser.parseUri();
+    const modifier = this.urlParser.getParam('platform') === 'web' ? 'web' : '';
     this.renderHashInfo();
-    renderMethods(methods);
+    renderMethods(methods, modifier);
     bridge.send('VKWebAppInit', {});
   }
 
   renderHashInfo() {
-    const parser = new UrlParser();
-    parser.parseUri();
-    const hash = parser.getParam('hash');
+    const hash = this.urlParser.getParam('hash');
     const hashInfoWrap = document.querySelector('.hash-banner');
     const hashInfoEl = hashInfoWrap.querySelector('.banner__description');
 
