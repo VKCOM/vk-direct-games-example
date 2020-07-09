@@ -275,7 +275,10 @@
   {
     "name": "VkWebAppShowInstallPushBox",
     "description": "Отправляет пуш-запрос установки игры на мобмльное устройство",
-    "params": []
+    "params": [],
+    "platforms": [
+      "Web"
+    ]
   },
   {
     "name": "VKWebAppGameInstalled",

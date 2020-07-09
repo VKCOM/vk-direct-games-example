@@ -6,7 +6,7 @@ if methods && methods.length > 0
                     span(class="icon-toggle") +
             else
                 h4(class="method-item__header") #{method.name}
-                    span(class="method-item__info") #{method.platforms ? 'Только ' + method.platforms.join('/') :'Не поддерживается на этой платформе'}
+                    span(class="method-item__info") #{method.platforms ? 'Только ' + method.platforms.join('/') :'Не поддерживается'}
             div(class="method-item__more hide")
                 p(class="method-item__description") #{method.description}
                 from(class=method.name + "-request-edit")
