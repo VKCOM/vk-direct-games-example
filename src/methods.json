@@ -39,7 +39,8 @@
         "title": "Id существующей подписки для действий cancel/resume",
         "type": "number"
       }
-    ]
+    ],
+    "platforms": ["Web"]
   },
   {
     "name": "VKWebAppShowStoryBox",
@@ -287,6 +288,10 @@
         "type": "number",
         "required": true
       }
+    ],
+    "platforms": [
+      "Android",
+      "IOS"
     ]
   },
   {
@@ -306,6 +311,10 @@
         "type": "json",
         "default": "{\"foo\": \"bar\"}"
       }
+    ],
+    "platforms": [
+      "Android",
+      "IOS"
     ]
   },
   {
@@ -318,11 +327,18 @@
         "default": "preloader",
         "required": true
       }
+    ],
+    "platforms": [
+      "Android",
+      "IOS"
     ]
   },
   {
     "name": "VKWebAppAddToHomeScreen",
     "description": "Добавление мини-приложения на главный экран устройства.",
-    "params": []
+    "params": [],
+    "platforms": [
+      "Android"
+    ]
   }
 ]
