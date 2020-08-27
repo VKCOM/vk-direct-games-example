@@ -343,5 +343,18 @@
     "platforms": [
       "Android"
     ]
+  },
+  {
+    "name": "VKWebAppGetGroupInfo",
+    "description": "Запрос данных сообщества.",
+    "params": [
+      {
+        "name": "group_id",
+        "title": "ID сообщества",
+        "default": 78616012,
+        "type": "number",
+        "required": true
+      }
+    ]
   }
 ]
