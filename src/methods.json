@@ -18,7 +18,7 @@
     ]
   },
   {
-    "name": "VkWebAppShowSubscriptionBox",
+    "name": "VKWebAppShowSubscriptionBox",
     "description": "Вызов диалога работы с подпиской",
     "params": [
       {
@@ -273,7 +273,7 @@
     ]
   },
   {
-    "name": "VkWebAppShowInstallPushBox",
+    "name": "VKWebAppShowInstallPushBox",
     "description": "Отправляет пуш-запрос установки игры на мобмльное устройство",
     "params": [],
     "platforms": [
