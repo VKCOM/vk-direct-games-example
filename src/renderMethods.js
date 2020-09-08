@@ -3,8 +3,6 @@ import UrlParser from "./UrlParser";
 import methods from "./methods";
 import bridge from '@vkontakte/vk-bridge';
 
-window.br = bridge;
-
 function tryAddAccessToken(methodConfig) {
   if (methodConfig.name === 'VKWebAppCallAPIMethod') {
     const parser = new UrlParser();
