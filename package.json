@@ -1,11 +1,10 @@
 {
   "name": "direct-game-example",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "",
   "main": "src/index.js",
   "dependencies": {
-    "@vkontakte/vk-bridge": "^2.2.3",
-    "@vkontakte/vk-connect": "^1.7.4",
+    "@vkontakte/vk-bridge": "^2.2.8",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "style-loader": "^1.0.1"
