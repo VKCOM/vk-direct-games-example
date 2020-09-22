@@ -345,6 +345,15 @@
     ]
   },
   {
+    "name": "VKWebAppAddToHomeScreenInfo",
+    "description": "Дает возможность посмотреть возможно ли установить ссылку приложения на домашний экран устройства и проверить добавлено ли оно уже",
+    "params": [],
+    "platforms": [
+      "Android",
+      "IOS"
+    ]
+  },
+  {
     "name": "VKWebAppGetGroupInfo",
     "description": "Запрос данных сообщества.",
     "params": [
