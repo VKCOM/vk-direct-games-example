@@ -327,7 +327,23 @@
       {
         "name": "ad_format",
         "title": "Формат рекламы, возможные значения preloader, reward, interstitial",
-        "default": "preloader",
+        "default": "interstitial",
+        "required": true
+      }
+    ],
+    "platforms": [
+      "Android",
+      "IOS"
+    ]
+  },
+  {
+    "name": "VKWebAppCheckNativeAds",
+    "description": "Проверить наличие рекламы для показа пользователю.",
+    "params": [
+      {
+        "name": "ad_format",
+        "title": "Формат рекламы, возможные значения preloader, reward, interstitial",
+        "default": "interstitial",
         "required": true
       }
     ],
