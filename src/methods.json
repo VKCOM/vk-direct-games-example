@@ -96,6 +96,12 @@
         "required": true,
         "type": "number",
         "default": 1
+      },
+      {
+        "name": "global",
+        "title": "Возвращали глобальную турнирную таблицу. (Возможные значения: 0 или 1)",
+        "type": "boolean",
+        "default": 0
       }
     ]
   },
