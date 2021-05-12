@@ -1,0 +1,30 @@
+if apiRequests && apiRequests.length > 0
+    each request in apiRequests
+        div(class="method-item")
+            h4(class="method-item__header" onclick='vkDirectGameApp.toggleRequestInfo("' + request.name_form + '", this)') #{request.name}
+                span(class="icon-toggle") +
+            div(class="method-item__more hide")
+                p(class="method-item__description") #{request.description}
+                from(class=request.name_form + "-request-edit")
+                    if request.params
+                        fieldset(class="fieldset")
+                            legend  Парамеры запроса
+                            each param in request.params
+                                div(class="form-input")
+                                    label(class="form-input__label")
+                                        b(class="form-input__label--boldText") #{param.name}
+                                        span  - #{param.title}:
+                                    input(class="control-text--input control-text" type="text" name=param.name value=param.default)
+                                    if param.required
+                                        small(class="helper") Обязательный
+                    div(class="form-input request-params")
+                        label(class="form-input__label") Запрос
+                        div(class="textarea-input")
+                            textarea(class="request-params-area control-text control-text--textarea")
+                    div(class="result-block")
+                        label(class="form-input__label") Ответ
+                        div(class="textarea-input")
+                            textarea(class="result-content-area control-text control-text--textarea")
+                    button(class="button" onclick='vkDirectGameApp.tryCallApi("' + request.name_form + '")') Отправить
+else
+    div(class="no-found") Ничего не найдено
