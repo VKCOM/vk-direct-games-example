@@ -1,0 +1,14 @@
+[
+  {
+    "name": "friends.getAppUsers",
+    "name_form": "getAppUsers",
+    "scope": "friends",
+    "description": "Возвращает список идентификаторов друзей текущего пользователя, которые установили данное приложение."
+  },
+  {
+    "name": "photos.getAlbums",
+    "name_form": "getAlbums",
+    "scope": "photos",
+    "description": "Возвращает список фотоальбомов пользователя."
+  }
+]
