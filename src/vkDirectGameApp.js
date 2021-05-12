@@ -18,13 +18,17 @@ class vkDirectGameApp {
     this.urlParser = new UrlParser();
     this.urlParser.parseUri();
     const modifier = this.urlParser.getParam('platform') === 'web' ? 'web' : '';
+    this.initScopes();
     this.renderHashInfo();
     this.renderScopesInfo();
     this.addHandlers();
     renderMethods(methods, modifier);
     renderApiRequests(apiRequests);
-    this.initScopes();
     bridge.send('VKWebAppInit', {});
+  }
+
+  initScopes() {
+    window.vkDirectGameApp.scopes = this.urlParser.getParam('whitelist_scopes');
   }
 
   renderHashInfo() {
@@ -41,7 +45,7 @@ class vkDirectGameApp {
   }
 
   renderScopesInfo() {
-    const scopes = this.urlParser.getParam('whitelist_scopes');
+    const scopes = window.vkDirectGameApp.scopes;
     const scopesInfoWrap = document.querySelector('.scopes-banner');
     const scopesInfoEl = scopesInfoWrap && scopesInfoWrap.querySelector('.banner__description');
 
@@ -50,7 +54,7 @@ class vkDirectGameApp {
     }
 
     scopesInfoWrap.classList.remove('hide');
-    scopesInfoEl.innerHTML = scopes;
+    scopesInfoEl.innerHTML = scopes.join(',');
   }
 
   toggleMoreInfoMethod(methodName, el) {
@@ -105,6 +109,37 @@ class vkDirectGameApp {
     ).catch(
       error => helper.showErrorResponse(error)
     );
+  }
+
+  addHandlers() {
+    const allTabs = document.querySelectorAll('.tab-item');
+
+    allTabs.forEach((tab) => {
+      tab.addEventListener('click', (eventObject) => {
+        const targetTab = eventObject.target;
+
+        if (!targetTab || targetTab.classList.contains('active')) {
+          return;
+        }
+
+        allTabs.forEach((element) => {
+          element.classList.remove('active');
+        });
+
+        const contentWrap = document.querySelector('.' + targetTab.dataset.tab);
+
+        if (!contentWrap) {
+          return;
+        }
+
+        document.querySelectorAll('.content-wrap').forEach((element) => {
+          element.classList.remove('active');
+        });
+
+        contentWrap.classList.add('active');
+        targetTab.classList.add('active');
+      });
+    })
   }
 }
 
