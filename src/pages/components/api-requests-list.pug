@@ -5,18 +5,8 @@ if apiRequests && apiRequests.length > 0
                 span(class="icon-toggle") +
             div(class="method-item__more hide")
                 p(class="method-item__description") #{request.description}
+                p(class="method-item__description") Права: #{request.scope}
                 from(class=request.name_form + "-request-edit")
-                    if request.params
-                        fieldset(class="fieldset")
-                            legend  Парамеры запроса
-                            each param in request.params
-                                div(class="form-input")
-                                    label(class="form-input__label")
-                                        b(class="form-input__label--boldText") #{param.name}
-                                        span  - #{param.title}:
-                                    input(class="control-text--input control-text" type="text" name=param.name value=param.default)
-                                    if param.required
-                                        small(class="helper") Обязательный
                     div(class="form-input request-params")
                         label(class="form-input__label") Запрос
                         div(class="textarea-input")

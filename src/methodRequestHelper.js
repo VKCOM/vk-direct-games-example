@@ -1,4 +1,3 @@
-import methods from './methods';
 import notify from './notify';
 
 /**
@@ -8,11 +7,9 @@ import notify from './notify';
  * @constructor
  */
 class MethodRequestHelper {
-  constructor(methodName) {
-    this.formMethod = window.document.querySelector('.' + methodName + '-request-edit');
-    this.currentMethod = methods.find((item) => {
-      return item.name === methodName;
-    });
+  constructor(currentMethod, formClass) {
+    this.formMethod = window.document.querySelector(formClass);
+    this.currentMethod = currentMethod;
 
     if (!this.formMethod) {
       throw new Error('Форма для отправки запроса не найдена');
@@ -64,8 +61,8 @@ class MethodRequestHelper {
     this.resultArea.value = JSON.stringify(data);
   }
 
-  fetchParams() {
-    const params = {};
+  fetchParams(defaultParams) {
+    const params = defaultParams || {};
 
     if (!this.formMethod) {
       return params;
@@ -93,6 +90,17 @@ class MethodRequestHelper {
       "method": this.currentMethod.name,
       "params": this.fetchParams()
     });
+  }
+
+  showRequestApi(params) {
+    this.formMethod.querySelector('.request-params-area').value = JSON.stringify({
+      "method": 'VKWebAppCallAPIMethod',
+      "params": this.fetchParams(params)
+    });
+  }
+
+  getScopeForApiRequest() {
+    return this.currentMethod.scope;
   }
 
   showErrorResponse(data) {

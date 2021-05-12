@@ -1,5 +1,6 @@
 import MethodRequestHelper from './methodRequestHelper';
 import notify from './notify';
+import methods from "./methods";
 
 const cacheHelpers = [];
 
@@ -12,7 +13,12 @@ const getHelperForMethod = (methodName) => {
   }
 
   try {
-    cacheHelpers[methodName] = new MethodRequestHelper(methodName);
+    const currentMethod = methods.find((item) => {
+      return item.name === methodName;
+    });
+
+    const formClass = '.' + methodName + '-request-edit';
+    cacheHelpers[methodName] = new MethodRequestHelper(currentMethod, formClass);
     return cacheHelpers[methodName];
   } catch (e) {
     notify(e.message);

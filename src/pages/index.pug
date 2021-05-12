@@ -13,12 +13,23 @@ html
                     div(class="banner__content")
                         div(class="banner__title") Параметры запуска приложения
                         div(class="banner__description")
+                div(class="banner scopes-banner hide")
+                    div(class="banner__icon")
+                    div(class="banner__content")
+                        div(class="banner__title") Разрешенные права доступа
+                        div(class="banner__description")
+            div(class="tabs-list")
+                div(class="tab-item tabs-list__item active" data-tab="vk-bridge-content") VK Bridge
+                div(class="tab-item tabs-list__item" data-tab="api-request-content") Запросы к API
+            div(class="content-wrap vk-bridge-content active")
                 div(class="quick-start")
                     a(href="https://vk.com/dev/games_vk_connect" target="_blank" class="link") Общая документация по платформе
-            div(class="search-widget")
-                input(class="search-widget__control"
-                    name="search-query"
-                    placeholder="Введите название метода" onchange='vkDirectGameApp.filterMethods(this)'
-                )
-            div(id="methods-list")
+                div(class="search-widget")
+                    input(class="search-widget__control"
+                        name="search-query"
+                        placeholder="Введите название метода" onchange='vkDirectGameApp.filterMethods(this)'
+                    )
+                div(id="methods-list")
+            div(class="content-wrap api-request-content")
+                div(id="api-requests-list")
         div(class="notify-block hide")
