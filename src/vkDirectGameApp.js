@@ -55,7 +55,7 @@ class vkDirectGameApp {
     }
 
     scopesInfoWrap.classList.remove('hide');
-    scopesInfoEl.innerHTML = scopes.join(',');
+    scopesInfoEl.innerHTML = scopes;
   }
 
   toggleMoreInfoMethod(methodName, el) {
