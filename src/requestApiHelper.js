@@ -9,6 +9,7 @@ export default class requestApiHelper {
   }
 
   async trySendRequest(method, scope, params) {
+    console.log(this.scopes);
     const send = (method, params) => {
       console.log('send params', params);
       console.log({"method": method, "request_id": "1234", "params": params});
@@ -37,11 +38,11 @@ export default class requestApiHelper {
         });
 
         this.access_token = auth_token_data.access_token;
+        this.setScope(scope, true);
       } catch (e) {
         console.error(e);
       }
 
-      this.setScope(scope, true);
       return send(method, params);
     } else {
       return send(method, params);
