@@ -9,7 +9,7 @@ export default class requestApiHelper {
   }
 
   checkAllowedScopes(scope) {
-    if (bridge.supports(VK_BRIDGE_CHECK_SCOPE_METHOD)) {
+    if (!bridge.supports(VK_BRIDGE_CHECK_SCOPE_METHOD)) {
       return true;
     }
 
@@ -21,6 +21,8 @@ export default class requestApiHelper {
         this.allowed_scopes[scope] = data.some((item) => {
           return item.scope === scope && item.allowed;
         });
+
+        return this.allowed_scopes[scope];
       }
     ).catch(console.error);
   }
