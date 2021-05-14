@@ -63,6 +63,6 @@ export default class requestApiHelper {
     }
 
     scopesInfoWrap.classList.remove('hide');
-    scopesInfoEl.innerHTML = scopes.join(',');
+    scopesInfoEl.innerHTML = Array.from(scopes.keys()).join(", ");
   }
 }
