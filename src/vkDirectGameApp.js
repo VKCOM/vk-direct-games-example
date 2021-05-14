@@ -19,7 +19,6 @@ class vkDirectGameApp {
     this.urlParser = new UrlParser();
     this.urlParser.parseUri();
     const modifier = this.urlParser.getParam('platform') === 'web' ? 'web' : '';
-    this.initScopes();
     this.app_id = parseInt(this.urlParser.getParam('api_id'));
     this.access_token = this.urlParser.getParam('access_token');
     this.renderHashInfo();
@@ -27,7 +26,7 @@ class vkDirectGameApp {
     this.addHandlers();
     renderMethods(methods, modifier);
     renderApiRequests(apiRequests);
-    this.requestApiHelper = new requestApiHelper(this.app_id, this.is_scope_allowed);
+    this.requestApiHelper = new requestApiHelper(this.app_id);
     bridge.send('VKWebAppInit', {});
   }
 
