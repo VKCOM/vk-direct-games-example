@@ -121,7 +121,7 @@ class vkDirectGameApp {
     if (bridge.supports('VKWebAppCheckAllowedScopes')) {
       bridge.send('VKWebAppCheckAllowedScopes', {
         "app_id" : this.app_id,
-        "scopes" : scopeForApiRequest
+        "scope" : scopeForApiRequest
       }).then(
         (data) => {
           this.is_scope_allowed[scopeForApiRequest] = data.some((item) => {
