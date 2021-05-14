@@ -12,11 +12,6 @@ const renderApiRequests = (requestsList) => {
         "required": true
       },
       {
-        "name": "request_id",
-        "title": "Произвольная строка",
-        "default": "1234"
-      },
-      {
         "name": "params",
         "title": "параметры метода API (параметр `access_token` никому передавать нельзя)",
         "type": "json",
