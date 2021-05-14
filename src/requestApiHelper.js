@@ -59,15 +59,18 @@ export default class requestApiHelper {
   }
 
   renderScopesInfo() {
-    const scopes = this.scopes.keys();
+    const scopes = Array.from(this.scopes.keys());
     const scopesInfoWrap = document.querySelector('.scopes-banner');
     const scopesInfoEl = scopesInfoWrap && scopesInfoWrap.querySelector('.banner__description');
+
+    console.log('scopes', scopes);
+    console.log('scopesInfoEl', scopesInfoEl);
 
     if (!scopes || !scopes.length) {
       return;
     }
 
     scopesInfoWrap.classList.remove('hide');
-    scopesInfoEl.innerHTML = Array.from(scopes.keys()).join(", ");
+    scopesInfoEl.innerHTML = scopes.join(", ");
   }
 }
