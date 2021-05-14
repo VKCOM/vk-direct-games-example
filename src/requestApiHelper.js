@@ -63,9 +63,6 @@ export default class requestApiHelper {
     const scopesInfoWrap = document.querySelector('.scopes-banner');
     const scopesInfoEl = scopesInfoWrap && scopesInfoWrap.querySelector('.banner__description');
 
-    console.log('scopes', scopes);
-    console.log('scopesInfoEl', scopesInfoEl);
-
     if (!scopes || !scopes.length) {
       return;
     }
