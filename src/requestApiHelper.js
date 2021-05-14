@@ -39,12 +39,15 @@ export default class requestApiHelper {
 
         this.access_token = auth_token_data.access_token;
         this.setScope(scope, true);
+        console.log(this.access_token);
       } catch (e) {
         console.error(e);
       }
 
+      params['access_token'] = this.access_token;
       return send(method, params);
     } else {
+      console.log('12122', params);
       return send(method, params);
     }
   }
