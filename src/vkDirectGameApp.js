@@ -136,10 +136,11 @@ class vkDirectGameApp {
     if (!this.is_scope_allowed[scopeForApiRequest]) {
       bridge.send('VKWebAppGetAuthToken', {
         "app_id" : this.app_id,
-        "scope" : this.scopes
+        "scope" : scopeForApiRequest
       }).then(
         (data) => {
           this.access_token = data.access_token
+          this.is_scope_allowed[scopeForApiRequest] = true;
         }
       ).catch(
         error => helper.showErrorResponse(error)
