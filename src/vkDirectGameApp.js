@@ -147,10 +147,11 @@ class vkDirectGameApp {
       );
     }
 
-    helper.showRequestApi();
+    const params = {"v": "5.131", "access_token": this.access_token};
+    helper.showRequestApi(params);
 
     //todo если есть, то отправляем запрос, если нет то дергаем получение токена с нужным скоупом
-    bridge.send('VKWebAppCallAPIMethod', helper.fetchParams({"v": "5.131", "access_token": this.access_token})).then(
+    bridge.send('VKWebAppCallAPIMethod', helper.fetchParams(params)).then(
       data => helper.showSuccessResponse(data)
     ).catch(
       error => helper.showErrorResponse(error)
