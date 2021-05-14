@@ -22,17 +22,11 @@ class vkDirectGameApp {
     this.app_id = parseInt(this.urlParser.getParam('api_id'));
     this.access_token = this.urlParser.getParam('access_token');
     this.renderHashInfo();
-    this.renderScopesInfo();
     this.addHandlers();
     renderMethods(methods, modifier);
     renderApiRequests(apiRequests);
     this.requestApiHelper = new requestApiHelper(this.app_id);
     bridge.send('VKWebAppInit', {});
-  }
-
-  initScopes() {
-    this.scopes = this.urlParser.getParam('whitelist_scopes');
-    this.is_scope_allowed = {};//todo перечислить все включенные и поставить им тру
   }
 
   renderHashInfo() {
@@ -46,19 +40,6 @@ class vkDirectGameApp {
 
     hashInfoWrap.classList.remove('hide');
     hashInfoEl.innerHTML = hash;
-  }
-
-  renderScopesInfo() {
-    const scopes = window.vkDirectGameApp.scopes;
-    const scopesInfoWrap = document.querySelector('.scopes-banner');
-    const scopesInfoEl = scopesInfoWrap && scopesInfoWrap.querySelector('.banner__description');
-
-    if (!scopes || !scopes.length) {
-      return;
-    }
-
-    scopesInfoWrap.classList.remove('hide');
-    scopesInfoEl.innerHTML = scopes;
   }
 
   toggleMoreInfoMethod(methodName, el) {
