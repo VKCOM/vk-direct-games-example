@@ -3,18 +3,12 @@
     "name": "friends.getAppUsers",
     "name_form": "getAppUsers",
     "scope": "friends",
-    "params": {
-      "v": "5.131"
-    },
     "description": "Возвращает список идентификаторов друзей текущего пользователя, которые установили данное приложение."
   },
   {
     "name": "photos.getAlbums",
     "name_form": "getAlbums",
     "scope": "photos",
-    "params": {
-      "v": "5.131"
-    },
     "description": "Возвращает список фотоальбомов пользователя."
   }
 ]
