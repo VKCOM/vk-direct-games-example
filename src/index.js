@@ -1,3 +1,4 @@
+import "regenerator-runtime/runtime.js";
 import vkDirectGameApp from './vkDirectGameApp';
 import './css/style.css'
 window.vkDirectGameApp = new vkDirectGameApp();
