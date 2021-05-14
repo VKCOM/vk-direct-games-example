@@ -1,0 +1,23 @@
+[
+  {
+    "name": "friends.getAppUsers",
+    "name_form": "getAppUsers",
+    "scope": "friends",
+    "params": [],
+    "description": "Возвращает список идентификаторов друзей текущего пользователя, которые установили данное приложение."
+  },
+  {
+    "name": "secure.sendNotification",
+    "name_form": "sendNotification",
+    "scope": "notify",
+    "params": [],
+    "description": "Отправляет уведомление пользователю."
+  },
+  {
+    "name": "photos.getAlbums",
+    "name_form": "getAlbums",
+    "scope": "photos",
+    "params": [],
+    "description": "Возвращает список фотоальбомов пользователя."
+  }
+]

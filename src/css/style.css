@@ -15,7 +15,7 @@
 }
 
 .link {
-  color: #2a5885;
+  color: rgb(42, 88, 133);
   text-decoration: none;
   cursor: pointer;
 }
@@ -28,7 +28,7 @@
   margin: 11px auto;
   text-align: center;
   font-size: 17px;
-  color: rgb(93, 93, 93);
+  color: rgb(92, 92, 92);
 }
 
 .header {
@@ -244,7 +244,7 @@
   margin: 7px 0;
   padding: 12px;
   border-radius: 8px;
-  background-color: #f5f5f5;
+  background-color: rgb(245, 245, 245);
 }
 
 .banner__title {
@@ -254,7 +254,7 @@
 
 .banner__description {
   margin-top: 2px;
-  color: #6d7885;
+  color: rgb(109, 120, 133);
 }
 
 .banner__icon {
@@ -272,10 +272,41 @@
   top: 3px;
   left: 12px;
   font-size: 19px;
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 
 .method-list--web {
   max-height: 930px;
   overflow-y: auto;
+}
+.tabs-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.tab-item {
+  padding: 5px;
+  color: rgb(85, 85, 85);
+  flex-grow: 1;
+  text-align: center;
+  border-radius: 4px 4px 0 0;
+}
+
+.tab-item.active {
+  color: rgb(0, 0, 0);
+  cursor: default;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(221, 221, 221);
+  border-bottom-color: transparent;
+}
+
+.content-wrap {
+  display: none;
+}
+
+.content-wrap.active {
+  display: block;
 }
