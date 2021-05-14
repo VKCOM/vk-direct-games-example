@@ -3,57 +3,58 @@ import bridge from "@vkontakte/vk-bridge";
 const VK_BRIDGE_CHECK_SCOPE_METHOD = 'VKWebAppCheckAllowedScopes';
 
 export default class requestApiHelper {
-  constructor(app_id, allowed_scopes) {
+  constructor(app_id) {
     this.app_id = app_id;
-    this.allowed_scopes = allowed_scopes;
+    this.scopes = new Map();
   }
 
-  trySendRequest(method, scope, params) {
+  async trySendRequest(method, scope, params) {
     const send = (method, params) => {
+      console.log('send params', params);
+      console.log({"method": method, "request_id": "1234", "params": params});
       return bridge.send('VKWebAppCallAPIMethod', {"method": method, "request_id": "1234", "params": params});
     }
 
-    if (bridge.supports(VK_BRIDGE_CHECK_SCOPE_METHOD)) {
-      return bridge.send(VK_BRIDGE_CHECK_SCOPE_METHOD, {
+    if (bridge.supports(VK_BRIDGE_CHECK_SCOPE_METHOD) && !this.scopes.has(scope)) {
+      const allowed_scopes = await bridge.send(VK_BRIDGE_CHECK_SCOPE_METHOD, {
         "app_id": this.app_id,
         "scopes": scope
-      }).then(
-        (data) => {
-          this.allowed_scopes[scope] = data.some((item) => {
-            return item.scope === scope && item.allowed;
-          });
+      });
 
-          if (!this.allowed_scopes[scope]) {
-            bridge.send('VKWebAppGetAuthToken', {
-              "app_id": this.app_id,
-              "scope": scope
-            }).then(
-              (data) => {
-                this.access_token = data.access_token
-                this.allowed_scopes[scope] = true;
-                return send(method, params);
-              }
-            ).catch(console.error);
-          } else {
-            return send(method, params);
-          }
-        }
-      ).catch(console.error);
-    } else {
-      if (!this.allowed_scopes[scope]) {
-        return bridge.send('VKWebAppGetAuthToken', {
-          "app_id": this.app_id,
-          "scope": scope
-        }).then(
-          (data) => {
-            this.access_token = data.access_token
-            this.allowed_scopes[scope] = true;
-            return send(method, params);
-          }
-        ).catch(console.error);
-      } else {
-        return send(method, params);
-      }
+      this.setScope(scope, allowed_scopes.some((item) => {
+        return item.scope === scope && item.allowed;
+      }));
     }
+
+    if (!this.scopes.get(scope)) {
+      const auth_token_data = await bridge.send('VKWebAppGetAuthToken', {
+        "app_id": this.app_id,
+        "scope": scope
+      });
+
+      this.access_token = auth_token_data.access_token;
+      this.setScope(scope, true);
+      return send(method, params);
+    } else {
+      return send(method, params);
+    }
+  }
+
+  setScope(scope, is_allowed) {
+    this.scopes.set(scope, is_allowed);
+    this.renderScopesInfo();
+  }
+
+  renderScopesInfo() {
+    const scopes = this.scopes.keys();
+    const scopesInfoWrap = document.querySelector('.scopes-banner');
+    const scopesInfoEl = scopesInfoWrap && scopesInfoWrap.querySelector('.banner__description');
+
+    if (!scopes || !scopes.length) {
+      return;
+    }
+
+    scopesInfoWrap.classList.remove('hide');
+    scopesInfoEl.innerHTML = scopes.join(',');
   }
 }
