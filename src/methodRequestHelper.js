@@ -99,6 +99,10 @@ class MethodRequestHelper {
     });
   }
 
+  getScopeForApiRequest() {
+    return this.currentMethod.scope;
+  }
+
   showErrorResponse(data) {
     this._showResponse('control-text--errorResponse', data)
   }
