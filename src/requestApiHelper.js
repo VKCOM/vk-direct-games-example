@@ -30,6 +30,7 @@ export default class requestApiHelper {
       }
     }
 
+    console.log('this.scopes.get(scope)', this.scopes.get(scope));
     if (!this.scopes.get(scope)) {
       try {
         const auth_token_data = await bridge.send('VKWebAppGetAuthToken', {
