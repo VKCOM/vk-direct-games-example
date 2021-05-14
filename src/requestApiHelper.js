@@ -13,7 +13,7 @@ export default class requestApiHelper {
     const send = (method, params) => {
       console.log('send params', params);
       console.log({"method": method, "request_id": "1234", "params": params});
-      return bridge.send('VKWebAppCallAPIMethod', {"method": method, "request_id": "1234", "params": params});
+      return bridge.send('VKWebAppCallAPIMethod', {"v" : 5.131, "method": method, "request_id": "1234", "params": params});
     }
 
     if (bridge.supports(VK_BRIDGE_CHECK_SCOPE_METHOD) && !this.scopes.has(scope)) {
