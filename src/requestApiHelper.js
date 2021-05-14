@@ -39,7 +39,7 @@ export default class requestApiHelper {
 
         this.access_token = auth_token_data.access_token;
         this.setScope(scope, true);
-        console.log(this.access_token);
+        console.log('auth_token_data', auth_token_data);
       } catch (e) {
         console.error(e);
       }
