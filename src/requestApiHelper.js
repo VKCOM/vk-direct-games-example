@@ -9,11 +9,8 @@ export default class requestApiHelper {
   }
 
   async trySendRequest(method, scope, params) {
-    console.log(this.scopes);
     const send = (method, params) => {
-      console.log('send params', params);
-      console.log({"v" : "5.131", "method": method, "request_id": "1234", "params": params});
-      return bridge.send('VKWebAppCallAPIMethod', {"v" : "5.131", "method": method, "request_id": "1234", "params": params});
+      return bridge.send('VKWebAppCallAPIMethod', {"method": method, "request_id": "1234", "params": params});
     }
 
     if (bridge.supports(VK_BRIDGE_CHECK_SCOPE_METHOD) && !this.scopes.has(scope)) {
@@ -30,7 +27,6 @@ export default class requestApiHelper {
       }
     }
 
-    console.log('this.scopes.get(scope)', this.scopes.get(scope));
     if (!this.scopes.get(scope)) {
       try {
         const auth_token_data = await bridge.send('VKWebAppGetAuthToken', {
@@ -40,7 +36,6 @@ export default class requestApiHelper {
 
         this.access_token = auth_token_data.access_token;
         this.setScope(scope, true);
-        console.log('auth_token_data', auth_token_data);
       } catch (e) {
         console.error(e);
       }
@@ -48,7 +43,6 @@ export default class requestApiHelper {
       params['access_token'] = this.access_token;
       return send(method, params);
     } else {
-      console.log('12122', params);
       return send(method, params);
     }
   }
