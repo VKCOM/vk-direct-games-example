@@ -43,6 +43,7 @@ export default class requestApiHelper {
         console.error(e);
       }
 
+      params['access_token'] = this.access_token;
       return send(method, params);
     } else {
       return send(method, params);
