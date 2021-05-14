@@ -96,13 +96,13 @@ class vkDirectGameApp {
     );
   }
 
-  tryCallApi(requestName) {
+  async tryCallApi(requestName) {
     const helper = getHelperForRequestApi(requestName);
     const scopeForApiRequest = helper.getScopeForApiRequest();
     const params = {"access_token": this.access_token};
     helper.showRequestApi(params);
 
-    this.requestApiHelper.trySendRequest(requestName, scopeForApiRequest, params).then(
+    await this.requestApiHelper.trySendRequest(requestName, scopeForApiRequest, params).then(
       data => helper.showSuccessResponse(data)
     ).catch(
       error => helper.showErrorResponse(error)
