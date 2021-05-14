@@ -92,10 +92,10 @@ class MethodRequestHelper {
     });
   }
 
-  showRequestApi() {
+  showRequestApi(params) {
     this.formMethod.querySelector('.request-params-area').value = JSON.stringify({
       "method": 'VKWebAppCallAPIMethod',
-      "params": this.fetchParams()
+      "params": this.fetchParams(params)
     });
   }
 
