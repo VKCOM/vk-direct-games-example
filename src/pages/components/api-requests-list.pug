@@ -5,6 +5,7 @@ if apiRequests && apiRequests.length > 0
                 span(class="icon-toggle") +
             div(class="method-item__more hide")
                 p(class="method-item__description") #{request.description}
+                p(class="method-item__description") Права: #{request.scope}
                 from(class=request.name_form + "-request-edit")
                     if request.params
                         fieldset(class="fieldset")
