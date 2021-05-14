@@ -19,7 +19,7 @@ class vkDirectGameApp {
     this.urlParser.parseUri();
     const modifier = this.urlParser.getParam('platform') === 'web' ? 'web' : '';
     this.initScopes();
-    this.app_id = this.urlParser.getParam('app_id');
+    this.app_id = this.urlParser.getParam('api_id');
     this.access_token = this.urlParser.getParam('access_token');
     this.renderHashInfo();
     this.renderScopesInfo();
