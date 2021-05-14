@@ -16,23 +16,31 @@ export default class requestApiHelper {
     }
 
     if (bridge.supports(VK_BRIDGE_CHECK_SCOPE_METHOD) && !this.scopes.has(scope)) {
-      const allowed_scopes = await bridge.send(VK_BRIDGE_CHECK_SCOPE_METHOD, {
-        "app_id": this.app_id,
-        "scopes": scope
-      });
-
-      this.setScope(scope, allowed_scopes.some((item) => {
-        return item.scope === scope && item.allowed;
-      }));
+      try {
+        const allowed_scopes = await bridge.send(VK_BRIDGE_CHECK_SCOPE_METHOD, {
+          "app_id": this.app_id,
+          "scopes": scope
+        });
+        this.setScope(scope, allowed_scopes.some((item) => {
+          return item.scope === scope && item.allowed;
+        }));
+      } catch (e) {
+        console.error(e);
+      }
     }
 
     if (!this.scopes.get(scope)) {
-      const auth_token_data = await bridge.send('VKWebAppGetAuthToken', {
-        "app_id": this.app_id,
-        "scope": scope
-      });
+      try {
+        const auth_token_data = await bridge.send('VKWebAppGetAuthToken', {
+          "app_id": this.app_id,
+          "scope": scope
+        });
 
-      this.access_token = auth_token_data.access_token;
+        this.access_token = auth_token_data.access_token;
+      } catch (e) {
+        console.error(e);
+      }
+
       this.setScope(scope, true);
       return send(method, params);
     } else {
