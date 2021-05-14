@@ -5,6 +5,7 @@ import renderMethods from './renderMethods';
 import renderApiRequests from './renderApiRequests';
 import getHelperForMethod from './getHelperForMethod';
 import getHelperForRequestApi from './getHelperForRequestApi';
+import requestApiHelper from './requestApiHelper';
 import bridge from '@vkontakte/vk-bridge';
 import UrlParser from "./UrlParser";
 
@@ -26,12 +27,13 @@ class vkDirectGameApp {
     this.addHandlers();
     renderMethods(methods, modifier);
     renderApiRequests(apiRequests);
+    this.requestApiHelper = new requestApiHelper(this.app_id, this.is_scope_allowed);
     bridge.send('VKWebAppInit', {});
   }
 
   initScopes() {
     this.scopes = this.urlParser.getParam('whitelist_scopes');
-    this.is_scope_allowed = [];//todo перечислить все включенные и поставить им тру
+    this.is_scope_allowed = {};//todo перечислить все включенные и поставить им тру
   }
 
   renderHashInfo() {
@@ -117,45 +119,14 @@ class vkDirectGameApp {
   tryCallApi(requestName) {
     const helper = getHelperForRequestApi(requestName);
     const scopeForApiRequest = helper.getScopeForApiRequest();
-
-    if (bridge.supports('VKWebAppCheckAllowedScopes')) {
-      bridge.send('VKWebAppCheckAllowedScopes', {
-        "app_id" : this.app_id,
-        "scopes" : scopeForApiRequest
-      }).then(
-        (data) => {
-          this.is_scope_allowed[scopeForApiRequest] = data.some((item) => {
-            return item.scope === scopeForApiRequest && item.allowed;
-          });
-        }
-      ).catch(
-        error => helper.showErrorResponse(error)
-      );
-    }
-
-    if (!this.is_scope_allowed[scopeForApiRequest]) {
-      bridge.send('VKWebAppGetAuthToken', {
-        "app_id" : this.app_id,
-        "scope" : scopeForApiRequest
-      }).then(
-        (data) => {
-          this.access_token = data.access_token
-          this.is_scope_allowed[scopeForApiRequest] = true;
-        }
-      ).catch(
-        error => helper.showErrorResponse(error)
-      );
-    }
-
     const params = {"v": "5.131", "access_token": this.access_token};
     helper.showRequestApi(params);
 
-    //todo если есть, то отправляем запрос, если нет то дергаем получение токена с нужным скоупом
-    bridge.send('VKWebAppCallAPIMethod', helper.fetchParams(params)).then(
+    this.requestApiHelper.trySendRequest(requestName, scopeForApiRequest, params).then(
       data => helper.showSuccessResponse(data)
     ).catch(
       error => helper.showErrorResponse(error)
-    );
+    )
   }
 
   addHandlers() {
