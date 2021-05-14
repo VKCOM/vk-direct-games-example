@@ -19,6 +19,7 @@ class vkDirectGameApp {
     this.urlParser.parseUri();
     const modifier = this.urlParser.getParam('platform') === 'web' ? 'web' : '';
     this.initScopes();
+    this.access_token = this.urlParser.getParam('access_token');
     this.renderHashInfo();
     this.renderScopesInfo();
     this.addHandlers();
@@ -28,7 +29,7 @@ class vkDirectGameApp {
   }
 
   initScopes() {
-    window.vkDirectGameApp.scopes = this.urlParser.getParam('whitelist_scopes');
+    this.scopes = this.urlParser.getParam('whitelist_scopes');
   }
 
   renderHashInfo() {
@@ -105,6 +106,30 @@ class vkDirectGameApp {
     const helper = getHelperForMethod(methodName);
     helper.showRequest();
     bridge.sendPromise(methodName, helper.fetchParams()).then(
+      data => helper.showSuccessResponse(data)
+    ).catch(
+      error => helper.showErrorResponse(error)
+    );
+  }
+
+  tryCallApi(requestName) {
+    const helper = getHelperForRequestApi(requestName);
+    helper.showRequestApi();
+    //todo проверяем скоуп
+
+    bridge.sendPromise('VKWebAppGetAuthToken', {
+      "app_id" : this.urlParser.getParam('app_id'),
+      "scopes" : this.scopes
+    }).then(
+      (data) => {
+        this.access_token = data.access_token
+      }
+    ).catch(
+      error => helper.showErrorResponse(error)
+    );
+
+    //todo если есть, то отправляем запрос, если нет то дергаем получение токена с нужным скоупом
+    bridge.sendPromise('VKWebAppCallAPIMethod', helper.fetchParams({"access_token": this.access_token})).then(
       data => helper.showSuccessResponse(data)
     ).catch(
       error => helper.showErrorResponse(error)

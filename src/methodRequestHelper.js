@@ -61,8 +61,8 @@ class MethodRequestHelper {
     this.resultArea.value = JSON.stringify(data);
   }
 
-  fetchParams() {
-    const params = {};
+  fetchParams(defaultParams) {
+    const params = defaultParams || {};
 
     if (!this.formMethod) {
       return params;
