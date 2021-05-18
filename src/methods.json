@@ -387,5 +387,10 @@
         "required": true
       }
     ]
+  },
+  {
+    "name": "VKWebAppAllowNotifications",
+    "description": "Запросить разрешение на отправку уведомлений.",
+    "params": []
   }
 ]
