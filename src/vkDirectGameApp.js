@@ -25,7 +25,9 @@ class vkDirectGameApp {
     this.addHandlers();
     renderMethods(methods, modifier);
     renderApiRequests(apiRequests);
-    this.requestApiHelper = new requestApiHelper(this.app_id);
+    this.allowed_scopes = this.getAllowedScopes();
+    this.requestApiHelper = new requestApiHelper(this.app_id, this.allowed_scopes);
+    requestApiHelper.renderScopesInfo(Array.from(this.allowed_scopes.keys()));
     bridge.send('VKWebAppInit', {});
   }
 
@@ -137,6 +139,22 @@ class vkDirectGameApp {
         targetTab.classList.add('active');
       });
     })
+  }
+
+  getAllowedScopes() {
+    const scopes_raw = this.urlParser.getParam('access_token_settings');
+
+    if (!scopes_raw) {
+      return new Map();
+    }
+
+    const allowed_scopes = scopes_raw.split(',');
+
+    if (!allowed_scopes || allowed_scopes.length <= 0) {
+      return new Map();
+    }
+
+    return new Map(allowed_scopes.map(scope => [scope, true]));
   }
 }
 

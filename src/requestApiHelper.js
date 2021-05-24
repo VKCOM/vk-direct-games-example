@@ -3,9 +3,9 @@ import bridge from "@vkontakte/vk-bridge";
 const VK_BRIDGE_CHECK_SCOPE_METHOD = 'VKWebAppCheckAllowedScopes';
 
 export default class requestApiHelper {
-  constructor(app_id) {
+  constructor(app_id, allowed_scopes) {
     this.app_id = app_id;
-    this.scopes = new Map();
+    this.scopes = allowed_scopes;
   }
 
   async trySendRequest(method, scope, params) {
@@ -49,11 +49,10 @@ export default class requestApiHelper {
 
   setScope(scope, is_allowed) {
     this.scopes.set(scope, is_allowed);
-    this.renderScopesInfo();
+    requestApiHelper.renderScopesInfo(Array.from(this.scopes.keys()));
   }
 
-  renderScopesInfo() {
-    const scopes = Array.from(this.scopes.keys());
+  static renderScopesInfo(scopes) {
     const scopesInfoWrap = document.querySelector('.scopes-banner');
     const scopesInfoEl = scopesInfoWrap && scopesInfoWrap.querySelector('.banner__description');
 
