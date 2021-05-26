@@ -392,5 +392,22 @@
     "name": "VKWebAppAllowNotifications",
     "description": "Запросить разрешение на отправку уведомлений.",
     "params": []
+  },
+  {
+    "name": "VKWebAppCheckAllowedScopes",
+    "description": "Проверить выданные пользователем разрешения",
+    "params": [
+      {
+        "name": "scopes",
+        "title": "Список прав через запятую",
+        "default": "friends,status",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "platforms": [
+      "Android",
+      "Web"
+    ]
   }
 ]
