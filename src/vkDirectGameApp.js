@@ -148,7 +148,7 @@ class vkDirectGameApp {
       return new Map();
     }
 
-    const allowed_scopes = scopes_raw.split(',');
+    const allowed_scopes = unescape(scopes_raw).split(',');
 
     if (!allowed_scopes || allowed_scopes.length <= 0) {
       return new Map();
