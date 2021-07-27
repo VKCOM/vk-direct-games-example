@@ -29,6 +29,12 @@ class vkDirectGameApp {
     this.requestApiHelper = new requestApiHelper(this.app_id, this.allowed_scopes);
     requestApiHelper.renderScopesInfo(Array.from(this.allowed_scopes.keys()));
     bridge.send('VKWebAppInit', {});
+
+    if (this.app_id && window.VK) {
+      VK.init({
+        apiId: this.app_id
+      });
+    }
   }
 
   renderHashInfo() {
