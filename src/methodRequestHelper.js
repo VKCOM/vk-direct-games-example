@@ -85,7 +85,21 @@ class MethodRequestHelper {
     return params;
   }
 
-  showRequest() {
+  getRequestParams() {
+    const value = this.formMethod.querySelector('.request-params-area').value;
+    let data = {};
+
+    try {
+      data = JSON.parse(value);
+    } catch (e) {
+      notify('Ошибка в формате данных');
+      return {};
+    }
+
+    return data['params'];
+  }
+
+  updateRequestInfo() {
     this.formMethod.querySelector('.request-params-area').value = JSON.stringify({
       "method": this.currentMethod.name,
       "params": this.fetchParams()

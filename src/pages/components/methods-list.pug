@@ -18,7 +18,7 @@ if methods && methods.length > 0
                                     label(class="form-input__label")
                                         b(class="form-input__label--boldText") #{param.name}
                                         span  - #{param.title}:
-                                    input(class="control-text--input control-text" type="text" name=param.name value=param.default)
+                                    input(class="control-text--input control-text" oninput='vkDirectGameApp.updateRequest("' + method.name + '");' type="text" name=param.name value=param.default)
                                     if param.required
                                         small(class="helper") Обязательный
                     div(class="form-input request-params")

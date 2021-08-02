@@ -49,7 +49,7 @@ class vkDirectGameApp {
     const iconToggle = el.querySelector('.icon-toggle');
     const helper = getHelperForMethod(methodName);
 
-    helper.showRequest();
+    helper.updateRequestInfo();
     moreInfoBlock.classList.toggle('hide');
 
     if (moreInfoBlock.classList.contains('hide')) {
@@ -83,6 +83,11 @@ class vkDirectGameApp {
     renderMethods(filterMethods);
   }
 
+  updateRequest(methodName) {
+    const helper = getHelperForMethod(methodName);
+    helper.updateRequestInfo();
+  }
+
   send(methodName) {
     if (!bridge.supports(methodName)) {
       notify('Метод не поддерживается');
@@ -90,8 +95,7 @@ class vkDirectGameApp {
     }
 
     const helper = getHelperForMethod(methodName);
-    helper.showRequest();
-    bridge.send(methodName, helper.fetchParams()).then(
+    bridge.send(methodName, helper.getRequestParams()).then(
       data => helper.showSuccessResponse(data)
     ).catch(
       error => helper.showErrorResponse(error)
