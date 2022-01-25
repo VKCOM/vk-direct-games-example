@@ -16,9 +16,9 @@ class vkDirectGameApp {
 
   //Выводим список доступных методов на экран и запускаем vk-bridge
   init() {
-    bridge.send('VKWebAppInit', {}).then(() => {
+    // bridge.send('VKWebAppInit', {}).then(() => {
       this._init();
-    });
+    // });
   }
 
   _init = () => {
