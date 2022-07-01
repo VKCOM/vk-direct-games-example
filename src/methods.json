@@ -103,6 +103,9 @@
         "type": "number",
         "default": 0
       }
+    ],
+    "platforms": [
+      "Android", "IOS", "MVK"
     ]
   },
   {
