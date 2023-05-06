@@ -1,46 +1,38 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no">
-    <title>VK Bridge test Direct Games</title>
-  </head>
-  <body class="body">
-    <header class="header">
-      <h1 class="header__title">VK Bridge test Direct Games</h1>
-    </header>
-    <div class="content">
-      <div class="header-info">
-        <div class="banner hash-banner hide">
-          <div class="banner__icon"></div>
-          <div class="banner__content">
-            <div class="banner__title">Параметры запуска приложения</div>
-            <div class="banner__description"></div>
-          </div>
-        </div>
-        <div class="banner scopes-banner hide">
-          <div class="banner__icon"></div>
-          <div class="banner__content">
-            <div class="banner__title">Разрешенные права доступа</div>
-            <div class="banner__description"></div>
-          </div>
-        </div>
-      </div>
-      <div class="tabs-list">
-        <div class="tab-item tabs-list__item active" data-tab="vk-bridge-content">VK Bridge</div>
-        <div class="tab-item tabs-list__item" data-tab="api-request-content">Запросы к API</div>
-      </div>
-      <div class="content-wrap vk-bridge-content active">
-        <div class="quick-start"><a class="link" href="https://vk.com/dev/games_vk_connect" target="_blank">Общая документация по платформе</a></div>
-        <div class="search-widget">
-          <input class="search-widget__control" name="search-query" placeholder="Введите название метода" onchange="vkDirectGameApp.filterMethods(this)">
-        </div>
-        <div id="methods-list"></div>
-      </div>
-      <div class="content-wrap api-request-content">
-        <div id="api-requests-list"></div>
-      </div>
-    </div>
-    <div class="notify-block hide"></div>
-  <script type="text/javascript" src="dist/index.js"></script></body>
+<html lang="en">
+<head>
+<title>JamRunner</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="JamRunner.css" rel="stylesheet">
+<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+</head>
+<body>
+
+<div class="wrapper" id="mainarea">
+<div class="alert alert-warning centered-axis-xy" style="min-height: 20px; display:none;" role="alert" id="compilingmessage">
+<div id='loadTasks'> </div>
+</div>
+<!-- The "tabindex=0" specifier on the canvas is important to allow it to capture keyboard focus when clicking on it with a mouse -->
+<canvas tabindex=0 id="canvas" class="emscripten" oncontextmenu="event.preventDefault()" style="display:none;">
+</div>
+<div class="row buttonarea text-center" id="buttonrow">
+<div class="col-sm-2 text-center"></div>
+<div class="col-sm-2 text-center"><button type="button" class="btn btn-primary" onclick="try { Module['pauseMainLoop'](); } catch(e) {console.error(e);}">Pause</button></div>
+<div class="col-sm-2 text-center"><button type="button" class="btn btn-primary" onclick="try { Module['resumeMainLoop'](); } catch(e) {console.error(e);}">Resume</button></div>
+<div class="col-sm-2 text-center"><button type="button" class="btn btn-primary" onclick="var w = document.getElementById('logwindow'); w.style.display = w.style.display ? '' : 'none';">Toggle Log</button></div>
+<div class="col-sm-2 text-center"><button type="button" class="btn btn-primary" id='clear_indexeddb' onclick="try { deleteIndexedDBStorage(); } catch(e) {console.error(e);}">Clear IndexedDB</button></div>
+<div class="col-sm-2 text-center"><button type="button" class="btn btn-primary" id="fullscreen_request">FullScreen</button></div>
+<div class="col-sm-2 text-center"></div>
+<div class="col-sm-2 text-center"></div>
+</div>
+<div class="texthalf text-normal jumbotron " id="logwindow" style='display:none'></div>
+
+<script src="JamRunner.UE4.js"></script>
+</body>
 </html>
