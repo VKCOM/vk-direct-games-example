@@ -34,6 +34,37 @@ class vkDirectGameApp {
     this.allowed_scopes = this.getAllowedScopes();
     this.requestApiHelper = new requestApiHelper(this.app_id, this.allowed_scopes);
     requestApiHelper.renderScopesInfo(Array.from(this.allowed_scopes.keys()));
+    window.setStorage = function(key, value) {
+      bridge.send('VKWebAppStorageSet', {"key": key, "value": value}).then((data) => {
+        console.log(data);
+      }).catch((error) => {
+        console.log(error)
+      });
+    }
+    window.getStorage = function(key) {
+      bridge.send('VKWebAppStorageGet', {
+          keys: [
+            key
+          ]})
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    window.getStorageKeys = function(limit = 20) {
+      bridge.send('VKWebAppStorageGetKeys', {
+          count: limit,
+          offset: 0
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   renderHashInfo() {

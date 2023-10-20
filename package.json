@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "dependencies": {
     "@vkontakte/vk-bridge": "^2.6.4",
+    "@vkontakte/vk-miniapps-deploy": "^0.1.6",
     "pug": "^3.0.1",
     "pug-loader": "^2.4.0",
     "regenerator-runtime": "^0.13.7",
@@ -12,7 +13,9 @@
   },
   "scripts": {
     "build": "webpack",
-    "clear": "rm -rf dist/*"
+    "clear": "rm -rf dist/*",
+    "predeploy": "npm run build",
+    "deploy": "vk-miniapps-deploy"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -25,5 +28,6 @@
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11"
-  }
+  },
+  "homepage": "."
 }
