@@ -124,14 +124,14 @@ class vkDirectGameApp {
     helper.updateRequestInfo();
   }
 
-  send(methodName) {
+  send(methodName, customRequestParams) {
     if (!bridge.supports(methodName)) {
       notify('Метод не поддерживается');
       return;
     }
 
     const helper = getHelperForMethod(methodName);
-    bridge.send(methodName, helper.getRequestParams()).then(
+    bridge.send(methodName, customRequestParams ? customRequestParams : helper.getRequestParams()).then(
       data => helper.showSuccessResponse(data)
     ).catch(
       error => helper.showErrorResponse(error)
