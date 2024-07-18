@@ -59,6 +59,8 @@ class MethodRequestHelper {
     this.resultArea.classList.add(className);
     setTimeout(() => this.resultArea.classList.remove(className), 3000);
     this.resultArea.value = JSON.stringify(data);
+    this.resultArea.setAttribute('data-test', JSON.stringify(data));
+    console.log(data);
   }
 
   fetchParams(defaultParams) {
